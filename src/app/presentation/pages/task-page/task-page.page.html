@@ -1,0 +1,47 @@
+<header class="header">
+  <div class="toolbar primary">
+    <h1 class="title">Administración de Tareas</h1>
+  </div>
+</header>
+
+<main class="content">
+
+
+  <section class="card navigation-card">
+    <div class="card-header">
+      <h2 class="card-title">Acciones Rápidas</h2>
+    </div>
+    <div class="card-content button-group">
+      <button class="btn btn-success" routerLink="/manage-task">Añadir Tarea</button>
+      <button class="btn btn-tertiary" routerLink="/categories">Administrar Categorías</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-header">
+      <h2 class="card-title">Filtrar por Categoría</h2>
+    </div>
+    <div class="card-content">
+      <label for="category-filter" class="form-label">Selecciona una categoría</label>
+      <select
+        id="category-filter"
+        class="form-select"
+        (change)="filterTasksByCategory($event)"
+      >
+        <option value="">Todas</option>
+        <option *ngFor="let category of categories$ | async" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-header">
+      <h2 class="card-title">Lista de Tareas</h2>
+    </div>
+    <div class="card-content">
+      <app-task-list-component [tasks]="tasks$ | async"></app-task-list-component>
+    </div>
+  </section>
+</main>

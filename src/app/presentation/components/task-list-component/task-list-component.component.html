@@ -1,0 +1,8 @@
+<div class="task-list">
+  <div *ngFor="let task of tasks; let i = index">
+    <input type="checkbox" [checked]="task.isCompleted" disabled/>
+    <label class="task-title">{{ task.title }}</label>
+    <button *ngIf="!task.isCompleted" class="button-check-completed" (click)="checkAsCompleted(i)">Completar</button>
+    <button class="button-remove" (click)="removetask(i)">Eliminar</button>
+  </div>
+</div>

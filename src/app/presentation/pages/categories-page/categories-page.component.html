@@ -1,0 +1,19 @@
+<div class="categories-page">
+  <button routerLink="/main">Volver a lista de tareas</button>
+  <h1>Administración de categorías:</h1>
+  <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+    <label for="name">Nombre:</label>
+    <input id="name" type="text" formControlName="name" />
+    <div *ngIf="categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched">
+      <small>Category name must be at least 3 characters long.</small>
+    </div>
+    <button type="submit" [disabled]="categoryForm.invalid">Añadir categoría</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let category of categories; let i = index">
+      {{ category.name }}
+      <button (click)="removeCategory(i)">Eliminar</button>
+    </li>
+  </ul>
+</div>
